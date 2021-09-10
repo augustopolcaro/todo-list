@@ -1,18 +1,27 @@
 import create from "zustand";
+import { persist } from "zustand/middleware";
 import { uid } from "react-uid";
 
-export const useStore = create((set) => ({
-  todos: [],
-  addTodo: (todoText, todoDescription) =>
-    set((state) => ({
-      todos: [
-        ...state.todos,
-        {
-          text: todoText,
-          description: todoDescription,
-          id: uid(`${todoText}-${state.todos.length}`),
-          isCompleted: false
-        }
-      ]
-    }))
-}));
+const useStore = create(
+  persist((set) => ({
+    todos: [],
+    addTodo: (todoTitle, todoDescription) =>
+      set((state) => ({
+        todos: [
+          ...state.todos,
+          {
+            title: todoTitle,
+            description: todoDescription,
+            id: uid(`${todoTitle}-${state.todos.length}`),
+            isCompleted: false,
+          },
+        ],
+      })),
+    deleteTodo: (todoId) =>
+      set((state) => ({
+        todos: state.todos.filter((todo) => todo.id !== todoId),
+      })),
+  }))
+);
+
+export default useStore;
