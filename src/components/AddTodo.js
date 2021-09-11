@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import useStore from "../useStore";
 
 function AddTodo() {
@@ -19,26 +19,29 @@ function AddTodo() {
   };
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Todo Title: </Form.Label>
-          <Form.Control
-            placeholder="Enter To-Do Title"
-            type="text"
-            value={todoTitle}
-            onChange={(e) => setTodoTitle(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Text
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3">
+        <Form.Label>Todo Title: </Form.Label>
+        <Form.Control
+          placeholder="Enter To-Do Title"
+          type="text"
+          value={todoTitle}
+          onChange={(e) => setTodoTitle(e.target.value)}
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          as="textarea"
+          placeholder="To-Do Description"
           value={todoDescription}
           onChange={(e) => setTodoDescription(e.target.value)}
         />
-        <Button type="submit" variant="primary">
-          Add To-Do
-        </Button>
-      </Form>
-    </Container>
+      </Form.Group>
+      <Button type="submit" variant="success" className="mb-3">
+        Add To-Do
+      </Button>
+    </Form>
   );
 }
 

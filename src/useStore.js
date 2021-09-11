@@ -21,6 +21,18 @@ const useStore = create(
       set((state) => ({
         todos: state.todos.filter((todo) => todo.id !== todoId),
       })),
+    toggleCompleteTodo: (todoId) =>
+      set((state) => ({
+        todos: state.todos.map((todo) => {
+          if (todo.id === todoId) {
+            return {
+              ...todo,
+              isCompleted: !todo.isCompleted,
+            };
+          }
+          return todo;
+        }),
+      })),
   }))
 );
 
