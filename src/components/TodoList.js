@@ -1,11 +1,11 @@
 import React from "react";
 import useStore from "../useStore";
-import { ListGroup, Card, Container, Row, Col } from "react-bootstrap";
+import { ListGroup, Card, Row, Col } from "react-bootstrap";
+import ReactMarkdown from "react-markdown";
+
 function TodoList() {
-  const { todos, toggleCompleteTodo } = useStore((state) => state);
-  const openModal = () => {
-    console.log("Clicking");
-  };
+  const { todos, toggleCompleteTodo, toggleModal } = useStore((state) => state);
+
   return (
     <ListGroup>
       {todos.map((todo) => {
@@ -19,12 +19,19 @@ function TodoList() {
           >
             <Row>
               <Col>
-                <Card.Body>
-                  <Card.Title className="clickable" onClick={openModal}>
-                    {todo.title}
-                  </Card.Title>
-                  <Card.Text>{todo.description}</Card.Text>
-                </Card.Body>
+                <Card>
+                  <Card.Body style={{ width: "30vw" }}>
+                    <Card.Title
+                      className="clickable"
+                      onClick={() => toggleModal(todo.id)}
+                    >
+                      {todo.title}
+                    </Card.Title>
+                    <Card.Text>
+                      <ReactMarkdown>{todo.description}</ReactMarkdown>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
               </Col>
               <Col className="my-auto">
                 <div className="form-group">
