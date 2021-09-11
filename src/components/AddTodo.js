@@ -27,6 +27,7 @@ function AddTodo() {
           type="text"
           value={todoTitle}
           onChange={(e) => setTodoTitle(e.target.value)}
+          required
         />
       </Form.Group>
       <Form.Group className="mb-3">
