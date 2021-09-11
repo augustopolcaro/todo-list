@@ -35,6 +35,7 @@ function TodoModal() {
       <Modal.Header closeButton>
         <Modal.Title>
           <Form.Control
+            className="border-0"
             placeholder="Enter To-Do Title"
             type="text"
             value={todoTitle}
@@ -46,6 +47,7 @@ function TodoModal() {
       <Modal.Body>
         <Form.Control
           as="textarea"
+          className="border-0"
           value={todoDescription}
           onChange={(e) => setTodoDescription(e.target.value)}
         >
