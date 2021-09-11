@@ -19,9 +19,8 @@ function AddTodo() {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form inline onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
-        <Form.Label>Todo Title: </Form.Label>
         <Form.Control
           placeholder="Enter To-Do Title"
           type="text"
@@ -31,7 +30,6 @@ function AddTodo() {
         />
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>Description</Form.Label>
         <Form.Control
           as="textarea"
           placeholder="To-Do Description"

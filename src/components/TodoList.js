@@ -1,6 +1,6 @@
 import React from "react";
 import useStore from "../useStore";
-import { ListGroup, Card, Row, Col } from "react-bootstrap";
+import { ListGroup, Form, Row, Col } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 
 function TodoList() {
@@ -11,46 +11,27 @@ function TodoList() {
       {todos.map((todo) => {
         return (
           <ListGroup.Item
-            style={{
-              background: todo.isCompleted ? "#90EE90" : "none",
-            }}
+            variant={todo.isCompleted ? "success" : ""}
             className="list-group-item"
             key={todo.id}
           >
             <Row>
-              <Col>
-                <Card>
-                  <Card.Body style={{ width: "30vw" }}>
-                    <Card.Title
-                      className="clickable"
-                      onClick={() => toggleModal(todo.id)}
-                    >
-                      {todo.title}
-                    </Card.Title>
-                    <Card.Text>
-                      <ReactMarkdown>{todo.description}</ReactMarkdown>
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
+              <Col className="justify-content-md-center">
+                <h3 className="clickable" onClick={() => toggleModal(todo.id)}>
+                  {todo.title}
+                </h3>
+                <ReactMarkdown className="sm-6 text-break overflow-auto">
+                  {todo.description}
+                </ReactMarkdown>
               </Col>
               <Col className="my-auto">
-                <div className="form-group">
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      id={`gridCheck-${todo.id}`}
-                      checked={todo.isCompleted}
-                      onChange={(e) => toggleCompleteTodo(todo.id)}
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor={`gridCheck-${todo.id}`}
-                    >
-                      Complete
-                    </label>
-                  </div>
-                </div>
+                <Form.Check
+                  type="switch"
+                  label="Complete this task"
+                  id={`gridCheck-${todo.id}`}
+                  checked={todo.isCompleted}
+                  onChange={(e) => toggleCompleteTodo(todo.id)}
+                />
               </Col>
             </Row>
           </ListGroup.Item>
